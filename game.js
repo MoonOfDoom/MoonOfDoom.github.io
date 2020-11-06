@@ -1,12 +1,8 @@
 // Our game scene
-
-var main_width = screen.width;
-var main_height = screen.height;
-
 var config = {
 	type: Phaser.AUTO,
-	width: main_width,
-	height: main_height,
+	width: screen.width,
+	height: screen.height,
   scale: {
       mode: Phaser.Scale.FIT,
       autoCenter: Phaser.Scale.CENTER_BOTH
@@ -33,12 +29,11 @@ var platforms;
 var cursors;
 var shiftKey;
 var camera;
-var world;
+var sky;
 
 var game = new Phaser.Game(config);
 
 //scene functions
-
 function preload() {
 	this.load.image('ground', 'assets/platform.png');
 
@@ -58,24 +53,24 @@ function preload() {
 
 function create() {
 	//world bounds
-	this.physics.world.setBounds(0, 0, main_width*100, 890, true, true, true, true);
+	this.physics.world.setBounds(0, 0, config.width*100, config.height, true, true, true, true);
 
 	//background
-	this.add.tileSprite(main_width/2, main_height/2, main_width*100, 890, 'sky');
+	sky = this.add.tileSprite(config.width/2, config.height/2, config.width, config.height, 'sky');
+	sky.setScrollFactor(0);
 
 	//platforms
 	platforms = this.physics.add.staticGroup();
 
-	platforms.create(main_width/2, main_height, 'ground').setScale(main_width*100,4).refreshBody();
-
-
-	//player
-	player = this.physics.add.sprite(100, 300, 'dude').setScale(0.35);
-
-	player.setCollideWorldBounds(true);
+	platforms.create(config.width/2, config.height, 'ground').setScale(config.width*100,4).refreshBody();
 
 	//land
-	this.add.tileSprite(0, 737, main_width*100, 169, 'land').setScale(0.4);
+	this.add.tileSprite(0, config.height*0.95, config.width*100, 169, 'land').setScale(0.4);
+
+	//player
+	player = this.physics.add.sprite(100, 300, 'dude').setScale(0.3);
+
+	player.setCollideWorldBounds(true);
 
 	camera = this.cameras.main;
 
@@ -134,8 +129,12 @@ function create() {
 };
 
 function update() {
-	camera.setBounds(0, -800, main_width*100, main_height*2);
+
+	camera.setBounds(0, -1.01*config.height, config.width*100, config.height*2);
 	camera.startFollow(player);
+
+	sky.tilePositionX = camera.scrollX * .1;
+	sky.tilePositionY = camera.scrollY * .1;
 
 	if (cursors.left.isDown && player.body.touching.down)
 	{
