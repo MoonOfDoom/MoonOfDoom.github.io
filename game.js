@@ -30,6 +30,9 @@ var cursors;
 var shiftKey;
 var camera;
 var sky;
+var tree1;
+var tree2;
+var tree3;
 
 var game = new Phaser.Game(config);
 
@@ -49,6 +52,18 @@ function preload() {
 			'assets/sky.png',
 			{ frameWidth: 1456, frameHeight: 890 }
 	);
+	this.load.spritesheet('tree1',
+			'assets/tree1.png',
+			{ frameWidth: 1440, frameHeight: 1440 }
+	);
+	this.load.spritesheet('tree2',
+			'assets/tree2.png',
+			{ frameWidth: 1440, frameHeight: 1440 }
+	);
+	this.load.spritesheet('tree3',
+			'assets/tree3.png',
+			{ frameWidth: 1440, frameHeight: 1440 }
+	);
 };
 
 function create() {
@@ -58,6 +73,16 @@ function create() {
 	//background
 	sky = this.add.tileSprite(config.width/2, config.height/2, config.width, config.height, 'sky');
 	sky.setScrollFactor(0);
+
+	//trees
+	tree3 = this.add.tileSprite(config.width/2, config.height*0.5, config.width, config.height*2, 'tree3').setScale(1);
+	tree3.setScrollFactor(0);
+
+	tree2 = this.add.tileSprite(config.width/2, config.height*0.5, config.width, config.height*2, 'tree2').setScale(1);
+	tree2.setScrollFactor(0);
+
+	tree1 = this.add.tileSprite(config.width/2, config.height*0.5, config.width, config.height*2, 'tree1').setScale(1);
+	tree1.setScrollFactor(0);
 
 	//platforms
 	platforms = this.physics.add.staticGroup();
@@ -133,8 +158,14 @@ function update() {
 	camera.setBounds(0, -1.01*config.height, config.width*100, config.height*2);
 	camera.startFollow(player);
 
-	sky.tilePositionX = camera.scrollX * .1;
-	sky.tilePositionY = camera.scrollY * .1;
+	tree1.tilePositionX = camera.scrollX * 0.6;
+	tree1.tilePositionY = camera.scrollY * 0.6;
+
+	tree2.tilePositionX = camera.scrollX * 0.4;
+	tree2.tilePositionY = camera.scrollY * 0.4;
+
+	tree3.tilePositionX = camera.scrollX * 0.2;
+	tree3.tilePositionY = camera.scrollY * 0.2;
 
 	if (cursors.left.isDown && player.body.touching.down)
 	{
