@@ -93,7 +93,7 @@ function create() {
 
 	//lab
 	lab = this.physics.add.staticGroup();
-	lab.create(100,config.height*0.42,'lab').setScale(0.2).refreshBody();
+	lab.create(100,config.height*0.38,'lab').setScale(0.15).refreshBody();
 
 	//land
 	this.add.tileSprite(0, config.height*0.95, config.width*100, 169, 'land').setScale(0.4);
