@@ -26,6 +26,7 @@ var config = {
 // for us
 var player;
 var platforms;
+var lab;
 var cursors;
 var shiftKey;
 var camera;
@@ -39,6 +40,7 @@ var game = new Phaser.Game(config);
 //scene functions
 function preload() {
 	this.load.image('ground', 'assets/platform.png');
+	this.load.image('lab', 'assets/lab.png');
 
 	this.load.spritesheet('dude',
 			'assets/rude.png',
@@ -88,6 +90,10 @@ function create() {
 	platforms = this.physics.add.staticGroup();
 
 	platforms.create(config.width/2, config.height, 'ground').setScale(config.width*100,4).refreshBody();
+
+	//lab
+	lab = this.physics.add.staticGroup();
+	lab.create(100,config.height*0.42,'lab').setScale(0.2).refreshBody();
 
 	//land
 	this.add.tileSprite(0, config.height*0.95, config.width*100, 169, 'land').setScale(0.4);
@@ -169,7 +175,7 @@ function update() {
 
 	if (cursors.left.isDown && player.body.touching.down)
 	{
-			player.setVelocityX(-450);
+			player.setVelocityX(-350);
 
 			cursors.up.isDown ? player.anims.play('cross', true) : player.anims.play('left', true);
 
@@ -177,7 +183,7 @@ function update() {
 	}
 	else if (cursors.right.isDown && player.body.touching.down)
 	{
-			player.setVelocityX(450);
+			player.setVelocityX(350);
 
 			cursors.up.isDown ? player.anims.play('cross', true) : player.anims.play('left', true);
 
