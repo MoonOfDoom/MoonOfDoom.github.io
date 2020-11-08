@@ -25,15 +25,4 @@ var config = {
 	}
 };
 
-// Create the game with our config values
-// this will also inject our canvas element into the HTML source
-// for us
 var game = new Phaser.Game(config);
-
-
-
-
-
-// function end() {
-//
-// };
