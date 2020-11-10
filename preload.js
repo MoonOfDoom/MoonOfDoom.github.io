@@ -2,6 +2,7 @@ export default function preload() {
 	this.load.image('ground', 'assets/platform.png');
 	this.load.image('lab', 'assets/lab.png');
 	this.load.image('moon', 'assets/moon.png');
+	this.load.image('particle', 'assets/particle.png');
 
 	this.load.spritesheet('dude',
 			'assets/rude.png',
@@ -26,5 +27,9 @@ export default function preload() {
 	this.load.spritesheet('tree3',
 			'assets/tree3.png',
 			{ frameWidth: 1440, frameHeight: 1440 }
+	);
+	this.load.spritesheet('banner',
+			'assets/banner.png',
+			{ frameWidth: 645, frameHeight: 1268 }
 	);
 };

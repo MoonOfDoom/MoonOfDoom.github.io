@@ -2,8 +2,8 @@ import preload from './preload.js';
 import create from './create.js';
 import update from './update.js';
 
-// Our game scene
-var config = {
+//game scene
+let config = {
 	type: Phaser.AUTO,
 	width: screen.width,
 	height: screen.height,
@@ -25,4 +25,4 @@ var config = {
 	}
 };
 
-var game = new Phaser.Game(config);
+let game = new Phaser.Game(config);
