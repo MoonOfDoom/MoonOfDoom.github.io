@@ -39,10 +39,15 @@ export default function create() {
 	this.player.setDepth(1);
 
   this.playerState = {
+    landed: true,
     walking: false,
     jumping: false,
     position: 'right',
-    firing: false
+    crouch: false,
+    lookup: false,
+    cross: false,
+    firing: false,
+    shoot: true
   }
 
   //bullets
@@ -51,12 +56,21 @@ export default function create() {
     defaultKey: 'particle',
     defaultFrame: null,
     active: true,
-    maxSize: -1,
+    maxSize: 5,
     runChildUpdate: false,
     createCallback: null,
     removeCallback: null,
     createMultipleCallback: null,
     allowGravity: false
+  });
+
+  //bullets limiter
+  this.time.addEvent({
+    delay: 100,
+    callback: () => {
+      this.playerState.shoot = true;
+    },
+    loop: true
   });
 
   //camera

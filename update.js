@@ -4,6 +4,7 @@ export default function update() {
   this.camera.setBounds(0, -1.01 * screen.height, screen.width * 100, screen.height * 2);
   this.camera.startFollow(this.player);
 
+  //scene movements
   this.tree1.tilePositionX = this.camera.scrollX * 0.6;
   this.tree1.tilePositionY = this.camera.scrollY * 0.6;
 
@@ -16,72 +17,112 @@ export default function update() {
   //banner lights flicker
   this.banner.anims.play('flicker', true);
 
-  //player control
+  //player positions
+  //landed
+  if (this.player.body.touching.down) this.playerState.landed = true;
+  else this.playerState.landed = false;
+
+  //mid-air anim
+  if (!this.playerState.landed) this.player.anims.play('jump', true);
+
+  //jump
+  if (this.cursors.shift.isDown) {
+    if (this.playerState.landed) this.player.setVelocityY(-1030);
+  }
+
   //left
-  if (this.cursors.left.isDown && this.player.body.touching.down) {
-    this.player.setVelocityX(-350);
-    this.cursors.up.isDown ? this.player.anims.play('cross', true) : this.player.anims.play('left', true);
-    this.player.flipX = true;
+  if (this.cursors.left.isDown) {
     this.playerState.position = 'left';
+    this.player.flipX = true;
+    this.player.setVelocityX(-350);
+    if (this.playerState.landed) {
+      if (this.cursors.up.isDown) {
+        this.playerState.cross = true;
+        this.player.anims.play('cross', true);
+      }
+      else this.player.anims.play('left', true);
+    }
   }
 
   //right
-  else if (this.cursors.right.isDown && this.player.body.touching.down) {
-    this.player.setVelocityX(350);
-    this.cursors.up.isDown ? this.player.anims.play('cross', true) : this.player.anims.play('left', true);
-    this.player.flipX = false;
+  else if (this.cursors.right.isDown) {
     this.playerState.position = 'right';
+    this.player.flipX = false;
+    this.player.setVelocityX(350);
+    if (this.playerState.landed) {
+      if (this.cursors.up.isDown) {
+        this.playerState.cross = true;
+        this.player.anims.play('cross', true);
+      }
+      else this.player.anims.play('right', true);
+    }
   }
 
   //crouch
-  else if (this.cursors.down.isDown && this.player.body.touching.down) {
-    this.player.setVelocityX(0);
-    this.player.anims.play('crouch', true);
+  else if (this.cursors.down.isDown) {
+    this.playerState.crouch = true;
+    if (this.playerState.landed) {
+      this.player.setVelocityX(0);
+      this.player.anims.play('crouch', true);
+    }
   }
 
-  //up
-  else if (this.cursors.up.isDown && this.player.body.touching.down) {
-    this.player.setVelocityX(0);
-    this.player.anims.play('lookup', true);
+  //lookup
+  else if (this.cursors.up.isDown) {
+    this.playerState.lookup = true;
+    if (this.playerState.landed) {
+      this.player.setVelocityX(0);
+      this.player.anims.play('lookup', true);
+    }
   }
 
-  //jump anim, still anim and direction control during jump
+  //idle
   else {
-    if (!this.player.body.touching.down) {
-      this.player.anims.play('jump', true);
-      if (this.cursors.left.isDown) this.player.setVelocityX(-350);
-      else if (this.cursors.right.isDown) this.player.setVelocityX(350);
-    } else {
+    if (this.playerState.landed) {
       this.player.setVelocityX(0);
       this.player.anims.play('idle', true);
     }
   }
 
-  //jump action
-  if (this.shiftKey.isDown && this.player.body.touching.down) {
-    this.player.setVelocityY(-1030);
-  }
+  //crouch, lookup and cross reset
+  if (this.cursors.up.isUp) this.playerState.lookup = false;
+  if (this.cursors.up.isUp || (this.cursors.left.isUp && this.cursors.right.isUp)) this.playerState.cross = false;
+  if (this.cursors.down.isUp) this.playerState.crouch = false;
 
   //fire
-
   function create_callback(bullet, player, playerState) {
-    if (bullet) {
+    if (bullet && bullet[0] && bullet[0].body) {
       bullet[0].visible = true;
       bullet[0].x = player.getCenter().x;
       bullet[0].y = player.getCenter().y;
-      if (playerState.position === 'left' && bullet[0].body) bullet[0].body.velocity.x = -1500;
-      else if (playerState.position === 'right' && bullet[0].body) bullet[0].body.velocity.x = 1500;
+      if (playerState.position === 'left') {
+        bullet[0].body.velocity.x = -1500;
+        bullet[0].flipX = true;
+      }
+      else if (playerState.position === 'right') {
+        bullet[0].body.velocity.x = 1500;
+        bullet[0].flipX = false;
+      }
+      if (playerState.cross) {
+        playerState.position === 'right' ? bullet[0].body.velocity.x = 800 : bullet[0].body.velocity.x = -800;
+        bullet[0].body.velocity.y = -550;
+      }
+      else if (playerState.lookup) {
+        bullet[0].body.velocity.x = 0;
+        bullet[0].body.velocity.y = -1000;
+        bullet[0].angle = -90;
+      }
     }
   }
-  if (Phaser.Input.Keyboard.JustDown(this.ctrlKey)) {
+  if (this.ctrlKey.isDown && this.playerState.shoot) {
     this.bullet = this.bullets.createFromConfig({
       classType: Phaser.GameObjects.Image,
-      key: 'particle', // Required
+      key: 'particle',
       frame: null,
       visible: false,
       active: true,
-      repeat: 0, // Create (1 + repeat) game objects
-      createCallback: create_callback(this.bullet, this.player, this.playerState), // Override this.createCallback if not undefined
+      repeat: 0,
+      createCallback: create_callback(this.bullet, this.player, this.playerState),
       setXY: {
         x: this.player.getCenter().x,
         y: this.player.getCenter().y,
@@ -90,17 +131,20 @@ export default function update() {
       },
       setScale: {
         x: 0.6,
-        y: 0.6
+        y: 0.4
       }
     });
+    this.playerState.shoot = false;
   }
 
-  //bullets die
+  //bullets destroy
   if (this.bullets.children.entries) {
     for (let bul of this.bullets.children.entries) {
-      if (bul.x > this.cameras.main.worldView.x + 2000 || bul.x < this.cameras.main.worldView.x - 2000) {
-        bul.destroy();
-      }
+      if (
+        bul.x > this.cameras.main.worldView.x + 1500
+        || bul.x < this.cameras.main.worldView.x
+        || bul.y < this.cameras.main.worldView.y
+      ) bul.destroy();
     }
   }
 };
