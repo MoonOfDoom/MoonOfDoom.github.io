@@ -16,7 +16,7 @@ export default function playerUpdate(game) {
   if (game.cursors.left.isDown) {
     game.playerState.position = 'left';
     game.player.flipX = true;
-    game.player.setVelocityX(-350);
+    game.player.setVelocityX(-550);
     if (game.playerState.landed) {
       if (game.cursors.up.isDown) {
         game.playerState.cross = true;
@@ -29,7 +29,7 @@ export default function playerUpdate(game) {
   else if (game.cursors.right.isDown) {
     game.playerState.position = 'right';
     game.player.flipX = false;
-    game.player.setVelocityX(350);
+    game.player.setVelocityX(550);
     if (game.playerState.landed) {
       if (game.cursors.up.isDown) {
         game.playerState.cross = true;

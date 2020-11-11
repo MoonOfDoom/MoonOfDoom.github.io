@@ -1,6 +1,6 @@
 import setupLevel from '/level1/setupLevel.js';
 import playerSetup from '/player/playerSetup.js';
-import playerAnims from '/player/playerAnims.js';
+import spriteAnims from '/spriteAnims.js';
 
 export default function create() {
 
@@ -14,7 +14,7 @@ export default function create() {
   this.camera = this.cameras.main;
 
   //animations
-  playerAnims(this);
+  spriteAnims(this);
 
   //keys
   this.shiftKey = this.input.keyboard.addKey('SHIFT');

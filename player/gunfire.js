@@ -5,28 +5,35 @@ export default function gunfire(game) {
       bullet[0].x = player.getCenter().x;
       bullet[0].y = player.getCenter().y;
       if (playerState.position === 'left') {
-        bullet[0].body.velocity.x = -1500;
+        bullet[0].body.velocity.x = -2000;
         bullet[0].flipX = true;
       }
       else if (playerState.position === 'right') {
-        bullet[0].body.velocity.x = 1500;
+        bullet[0].body.velocity.x = 2000;
         bullet[0].flipX = false;
       }
       if (playerState.cross) {
-        playerState.position === 'right' ? bullet[0].body.velocity.x = 800 : bullet[0].body.velocity.x = -800;
-        bullet[0].body.velocity.y = -550;
+        if (playerState.position === 'right') {
+          bullet[0].body.velocity.x = 1200;
+          bullet[0].angle = -45;
+        }
+        else {
+          bullet[0].body.velocity.x = -1200;
+          bullet[0].angle = 45;
+        }
+        bullet[0].body.velocity.y = -600;
       }
       else if (playerState.lookup) {
         bullet[0].body.velocity.x = 0;
-        bullet[0].body.velocity.y = -1000;
-        bullet[0].angle = -90;
+        bullet[0].body.velocity.y = -1500;
+        playerState.position === 'right' ? bullet[0].angle = -90 : bullet[0].angle = 90;
       }
     }
   }
   if (game.ctrlKey.isDown && game.playerState.shoot) {
     game.bullet = game.bullets.createFromConfig({
       classType: Phaser.GameObjects.Image,
-      key: 'particle',
+      key: 'bullet',
       frame: null,
       visible: false,
       active: true,

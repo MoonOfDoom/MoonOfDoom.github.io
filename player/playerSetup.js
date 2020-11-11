@@ -19,10 +19,10 @@ export default function playerSetup(game) {
   //bullets
   game.bullets = game.physics.add.group({
     classType: Phaser.GameObjects.Image,
-    defaultKey: 'particle',
+    defaultKey: 'bullet',
     defaultFrame: null,
     active: true,
-    maxSize: 5,
+    maxSize: -1,
     runChildUpdate: false,
     createCallback: null,
     removeCallback: null,

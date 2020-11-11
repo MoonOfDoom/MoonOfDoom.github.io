@@ -1,9 +1,11 @@
 export default function preload() {
+	//images
 	this.load.image('ground', 'assets/platform.png');
 	this.load.image('lab', 'assets/lab.png');
 	this.load.image('moon', 'assets/moon.png');
-	this.load.image('particle', 'assets/particle.png');
+	this.load.image('bullet', 'assets/bullet.png');
 
+	//spritesheets
 	this.load.spritesheet('dude',
 			'assets/rude.png',
 			{ frameWidth: 512, frameHeight: 638.8 }
