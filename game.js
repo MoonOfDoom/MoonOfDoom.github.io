@@ -11,6 +11,16 @@ let config = {
       mode: Phaser.Scale.FIT,
       autoCenter: Phaser.Scale.CENTER_BOTH
   },
+	scene: null
+};
+
+let game = new Phaser.Game(config);
+
+let levelOneConfig = {
+	key: 'levelOne',
+	preload: preload,
+	create: create,
+	update: update,
 	physics: {
 			default: 'arcade',
 			arcade: {
@@ -18,11 +28,6 @@ let config = {
 					debug: false
 			}
 	},
-	scene: {
-			preload: preload,
-			create: create,
-			update: update
-	}
 };
 
-let game = new Phaser.Game(config);
+let levelOne = game.scene.add('levelOne',levelOneConfig,true);

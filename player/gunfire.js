@@ -58,7 +58,7 @@ export default function gunfire(game) {
   }
 
   //reload
-  if (game.zKey.isDown) game.playerState.ammo = 60;
+  if (game.cursors.space.isDown && game.playerState.ammo === 0) game.playerState.ammo = 60;
 
   //bullets destroy
   if (game.bullets.children.entries) {
