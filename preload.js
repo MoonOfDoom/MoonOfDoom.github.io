@@ -4,6 +4,7 @@ export default function preload() {
 	this.load.image('lab', 'assets/lab.png');
 	this.load.image('moon', 'assets/moon.png');
 	this.load.image('bullet', 'assets/bullet.png');
+	this.load.image('reload', 'assets/reload.png');
 
 	//spritesheets
 	this.load.spritesheet('dude',

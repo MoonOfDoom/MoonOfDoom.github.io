@@ -14,7 +14,7 @@ export default function playerSetup(game) {
     cross: false,
     firing: false,
     shoot: false,
-    ammo: 30
+    ammo: 60
   }
 
   //bullets

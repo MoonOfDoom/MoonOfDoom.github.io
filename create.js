@@ -1,6 +1,7 @@
 import setupLevel from '/level1/setupLevel.js';
 import playerSetup from '/player/playerSetup.js';
 import spriteAnims from '/spriteAnims.js';
+import layout from '/layout/setupLayout.js';
 
 export default function create() {
 
@@ -19,9 +20,12 @@ export default function create() {
   //keys
   this.shiftKey = this.input.keyboard.addKey('SHIFT');
   this.ctrlKey = this.input.keyboard.addKey('CTRL');
-  this.rKey = this.input.keyboard.addKey('R');
+  this.zKey = this.input.keyboard.addKey('Z');
   this.cursors = this.input.keyboard.createCursorKeys();
 
   //collisions
   this.physics.add.collider(this.player, this.platforms);
+
+  //layout
+  layout(this);
 };
