@@ -1,9 +1,10 @@
-import setupLevel from '/level1/setupLevel.js';
-import playerSetup from '/player/playerSetup.js';
-import spriteAnims from '/spriteAnims.js';
-import layout from '/layout/setupLayout.js';
+import setupLevel from './setupLevel.js';
+import playerSetup from '../player/playerSetup.js';
+import spriteAnims from './spriteAnims.js';
+import playerAnims from '../player/playerAnims.js';
+import layout from '../layout/setupLayout.js';
 
-export default function create() {
+export default function createOne() {
 
   //level setup
   setupLevel(this);
@@ -15,6 +16,7 @@ export default function create() {
   this.camera = this.cameras.main;
 
   //animations
+  playerAnims(this);
   spriteAnims(this);
 
   //keys

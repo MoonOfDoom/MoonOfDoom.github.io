@@ -1,6 +1,6 @@
-import preload from './preload.js';
-import create from './create.js';
-import update from './update.js';
+import preloadOne from './levelOne/preloadOne.js';
+import createOne from './levelOne/createOne.js';
+import updateOne from './levelOne/updateOne.js';
 
 //game scene
 let config = {
@@ -18,9 +18,9 @@ let game = new Phaser.Game(config);
 
 let levelOneConfig = {
 	key: 'levelOne',
-	preload: preload,
-	create: create,
-	update: update,
+	preload: preloadOne,
+	create: createOne,
+	update: updateOne,
 	physics: {
 			default: 'arcade',
 			arcade: {
