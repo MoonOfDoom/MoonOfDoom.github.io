@@ -1,4 +1,5 @@
 export default function gunfire(game) {
+  //bullet movements
   function create_callback(bullet, player, playerState) {
     if (bullet && bullet[0] && bullet[0].body) {
       bullet[0].visible = true;
@@ -28,9 +29,12 @@ export default function gunfire(game) {
         bullet[0].body.velocity.y = -1500;
         playerState.position === 'right' ? bullet[0].angle = -90 : bullet[0].angle = 90;
       }
+      game.playerState.ammo--;
     }
   }
-  if (game.ctrlKey.isDown && game.playerState.shoot) {
+
+  //shoot
+  if (game.ctrlKey.isDown && game.playerState.shoot && game.playerState.ammo > 0) {
     game.bullet = game.bullets.createFromConfig({
       classType: Phaser.GameObjects.Image,
       key: 'bullet',
@@ -52,6 +56,9 @@ export default function gunfire(game) {
     });
     game.playerState.shoot = false;
   }
+
+  //reload
+  if (game.rKey.isDown) game.playerState.ammo = 30;
 
   //bullets destroy
   if (game.bullets.children.entries) {

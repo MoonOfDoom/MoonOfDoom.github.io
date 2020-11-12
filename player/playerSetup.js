@@ -13,7 +13,8 @@ export default function playerSetup(game) {
     lookup: false,
     cross: false,
     firing: false,
-    shoot: false
+    shoot: false,
+    ammo: 30
   }
 
   //bullets

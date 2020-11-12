@@ -17,9 +17,9 @@ export default function playerUpdate(game) {
     game.playerState.position = 'left';
     game.player.flipX = true;
     game.player.setVelocityX(-550);
+    if (game.cursors.up.isDown) game.playerState.cross = true;
     if (game.playerState.landed) {
       if (game.cursors.up.isDown) {
-        game.playerState.cross = true;
         game.player.anims.play('cross', true);
       } else game.player.anims.play('left', true);
     }
@@ -30,9 +30,9 @@ export default function playerUpdate(game) {
     game.playerState.position = 'right';
     game.player.flipX = false;
     game.player.setVelocityX(550);
+    if (game.cursors.up.isDown) game.playerState.cross = true;
     if (game.playerState.landed) {
       if (game.cursors.up.isDown) {
-        game.playerState.cross = true;
         game.player.anims.play('cross', true);
       } else game.player.anims.play('right', true);
     }

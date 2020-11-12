@@ -19,6 +19,7 @@ export default function create() {
   //keys
   this.shiftKey = this.input.keyboard.addKey('SHIFT');
   this.ctrlKey = this.input.keyboard.addKey('CTRL');
+  this.rKey = this.input.keyboard.addKey('R');
   this.cursors = this.input.keyboard.createCursorKeys();
 
   //collisions
