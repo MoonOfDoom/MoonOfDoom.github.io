@@ -14,7 +14,11 @@ export default function preloadOne() {
 	);
 	this.load.spritesheet('land',
 			'../assets/land.png',
-			{ frameWidth: 386, frameHeight: 169 }
+			{ frameWidth: 154, frameHeight: 68 }
+	);
+	this.load.spritesheet('water',
+			'../assets/water.png',
+			{ frameWidth: 154, frameHeight: 68 }
 	);
 	this.load.spritesheet('sky',
 			'../assets/sky.png',

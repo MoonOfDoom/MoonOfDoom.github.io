@@ -1,6 +1,6 @@
 export default function setupLevel(game) {
   //world bounds
-  game.physics.world.setBounds(0, 0, screen.width * 100, screen.height, true, true, true, true);
+  game.physics.world.setBounds(0, 0, screen.width * 100, screen.height * 1.3, true, true, true, true);
 
   //background
   game.sky = game.add.tileSprite(screen.width / 2, screen.height / 2, screen.width, screen.height, 'sky');
@@ -22,7 +22,8 @@ export default function setupLevel(game) {
 
   //platforms
   game.platforms = game.physics.add.staticGroup();
-  game.platforms.create(screen.width / 2, screen.height, 'ground').setScale(screen.width * 100, 4).refreshBody();
+  game.platforms.create(screen.width / 2, screen.height * 0.96, 'ground').setScale(screen.width * 0.009, 1).refreshBody();
+  game.platforms.create(screen.width / 2 + screen.width * 0.009 *154 + 600, screen.height * 0.96, 'ground').setScale(screen.width * 0.009, 1).refreshBody();
 
   //lab banner
   game.banner = game.add.sprite(245, 480, 'banner').setScale(0.15);
@@ -30,6 +31,11 @@ export default function setupLevel(game) {
   //lab
   game.add.sprite(100, screen.height * 0.38, 'lab').setScale(0.21);
 
+  //water
+  game.water = game.add.tileSprite(screen.width / 2, screen.height * 0.98, screen.width, 68, 'water');
+  game.water.setScrollFactor(0,1);
+
   //land
-  game.add.tileSprite(0, screen.height * 0.95, screen.width * 100, 169, 'land').setScale(0.4);
+  game.add.tileSprite(screen.width / 2, screen.height * 0.95, screen.width * 0.009 * 154, 68, 'land');
+  game.add.tileSprite(screen.width / 2 + screen.width * 0.009 *154 + 600, screen.height * 0.95, screen.width * 0.009 * 154, 68, 'land');
 }

@@ -13,6 +13,8 @@ export default function updateLevel(game) {
   game.tree3.tilePositionX = game.camera.scrollX * 0.2;
   game.tree3.tilePositionY = game.camera.scrollY * 0.2;
 
+  game.water.tilePositionX = game.camera.scrollX;
+
   //banner lights flicker
   game.banner.anims.play('flicker', true);
 }

@@ -1,5 +1,7 @@
 export default function playerSetup(game) {
   game.player = game.physics.add.sprite(200, 0, 'dude').setScale(0.3);
+  game.player.setSize(200,550,false);
+  game.player.setOffset(170,90);
   game.player.setCollideWorldBounds(true);
   game.player.setDepth(1);
 
@@ -15,7 +17,8 @@ export default function playerSetup(game) {
     firing: false,
     shoot: false,
     reloading: false,
-    ammo: 60
+    ammo: 60,
+    health: 100
   }
 
   //bullets
