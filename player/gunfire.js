@@ -58,7 +58,17 @@ export default function gunfire(game) {
   }
 
   //reload
-  if (game.cursors.space.isDown && game.playerState.ammo === 0) game.playerState.ammo = 60;
+  if (game.cursors.space.isDown && game.playerState.ammo === 0 && !game.playerState.reloading) {
+    game.playerState.reloading = true;
+    game.time.addEvent({
+      delay: 3000,
+      callback: () => {
+        game.playerState.ammo = 60;
+        game.playerState.reloading = false;
+      },
+      loop: false
+    });
+  }
 
   //bullets destroy
   if (game.bullets.children.entries) {

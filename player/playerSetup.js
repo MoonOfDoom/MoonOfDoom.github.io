@@ -14,6 +14,7 @@ export default function playerSetup(game) {
     cross: false,
     firing: false,
     shoot: false,
+    reloading: false,
     ammo: 60
   }
 
