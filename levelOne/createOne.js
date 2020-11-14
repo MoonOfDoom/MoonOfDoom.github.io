@@ -27,6 +27,7 @@ export default function createOne() {
 
   //collisions
   this.physics.add.collider(this.player, this.platforms);
+  this.physics.add.collider(this.player, this.boxes);
 
   //layout
   layout(this);

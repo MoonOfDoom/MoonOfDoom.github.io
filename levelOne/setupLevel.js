@@ -1,6 +1,6 @@
 export default function setupLevel(game) {
   //world bounds
-  game.physics.world.setBounds(0, 0, screen.width * 100, screen.height * 1.3, true, true, true, true);
+  game.physics.world.setBounds(0, -200, screen.width * 100, screen.height * 2, true, true, true, true);
 
   //background
   game.sky = game.add.tileSprite(screen.width / 2, screen.height / 2, screen.width, screen.height, 'sky');
@@ -24,6 +24,12 @@ export default function setupLevel(game) {
   game.platforms = game.physics.add.staticGroup();
   game.platforms.create(screen.width / 2, screen.height * 0.96, 'ground').setScale(screen.width * 0.009, 1).refreshBody();
   game.platforms.create(screen.width / 2 + screen.width * 0.009 *154 + 600, screen.height * 0.96, 'ground').setScale(screen.width * 0.009, 1).refreshBody();
+
+  //boxes
+  game.boxes = game.physics.add.staticGroup();
+  game.boxes.create(screen.width / 2, screen.height * 0.6, 'box').refreshBody();
+  game.boxes.create(screen.width / 2 + 70, screen.height * 0.6, 'box').refreshBody();
+  game.boxes.create(screen.width / 2 + 140, screen.height * 0.6, 'box').refreshBody();
 
   //lab banner
   game.banner = game.add.sprite(245, 480, 'banner').setScale(0.15);

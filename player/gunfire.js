@@ -61,7 +61,7 @@ export default function gunfire(game) {
   if (game.cursors.space.isDown && game.playerState.ammo === 0 && !game.playerState.reloading) {
     game.playerState.reloading = true;
     game.time.addEvent({
-      delay: 3000,
+      delay: 2000,
       callback: () => {
         game.playerState.ammo = 60;
         game.playerState.reloading = false;

@@ -3,6 +3,7 @@ export default function preloadOne() {
 	this.load.image('ground', '../assets/platform.png');
 	this.load.image('lab', '../assets/lab.png');
 	this.load.image('moon', '../assets/moon.png');
+	this.load.image('box', '../assets/box.png');
 	this.load.image('bullet', '../assets/bullet.png');
 	this.load.image('reload', '../assets/reload.png');
 	this.load.image('reloading', '../assets/reloading.png');
