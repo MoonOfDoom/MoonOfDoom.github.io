@@ -34,7 +34,7 @@ export default function gunfire(game) {
   }
 
   //shoot
-  if (game.ctrlKey.isDown && game.playerState.shoot && game.playerState.ammo > 0) {
+  if (game.playerState.health > 0 && game.ctrlKey.isDown && game.playerState.shoot && game.playerState.ammo > 0) {
     game.bullet = game.bullets.createFromConfig({
       classType: Phaser.GameObjects.Image,
       key: 'bullet',

@@ -1,3 +1,8 @@
+//splash screen files
+import preloadSplash from './splashScreen/preloadSplash.js';
+import createSplash from './splashScreen/createSplash.js';
+import updateSplash from './splashScreen/updateSplash.js';
+
 //level 1 files
 import preloadOne from './levelOne/preloadOne.js';
 import createOne from './levelOne/createOne.js';
@@ -21,6 +26,13 @@ let config = {
 };
 
 let game = new Phaser.Game(config);
+
+let splashScreenConfig = {
+	key: 'splashScreen',
+	preload: preloadSplash,
+	create: createSplash,
+	update: updateSplash,
+};
 
 let levelOneConfig = {
 	key: 'levelOne',
@@ -50,5 +62,6 @@ let levelTwoConfig = {
 	}
 }
 
-let levelOne = game.scene.add('levelOne',levelOneConfig,true);
+let splashScreen = game.scene.add('splashScreen',splashScreenConfig,true);
+let levelOne = game.scene.add('levelOne',levelOneConfig,false);
 let levelTwo = game.scene.add('levelTwo',levelTwoConfig,false);

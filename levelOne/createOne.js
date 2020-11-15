@@ -20,9 +20,7 @@ export default function createOne() {
   spriteAnims(this);
 
   //keys
-  this.shiftKey = this.input.keyboard.addKey('SHIFT');
   this.ctrlKey = this.input.keyboard.addKey('CTRL');
-  this.zKey = this.input.keyboard.addKey('Z');
   this.cursors = this.input.keyboard.createCursorKeys();
 
   //collisions
