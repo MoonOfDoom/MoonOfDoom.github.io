@@ -1,6 +1,11 @@
 export default function updateLevel(game) {
+  let {
+    width,
+    height
+  } = game.game.config;
+
   //camera movements
-  game.camera.setBounds(0, -1.01 * screen.height, screen.width * 100, screen.height * 2);
+  game.camera.setBounds(0, -1.01 * height, width * 100, height * 2);
   game.camera.startFollow(game.player);
 
   //scene movements

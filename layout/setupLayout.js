@@ -1,4 +1,10 @@
 export default function layout(game) {
+
+  let {
+    width,
+    height
+  } = game.game.config;
+
   //message display
   game.showMsg = false;
   //flash message
@@ -10,10 +16,10 @@ export default function layout(game) {
     loop: true
   });
   //reload
-  game.reloadFlash = game.add.image(screen.width / 2, screen.height * 0.2, 'reload');
+  game.reloadFlash = game.add.image(width / 2, height * 0.2, 'reload');
   game.reloadFlash.setScrollFactor(0);
   game.reloadFlash.visible = false;
-  game.reloading = game.add.image(screen.width / 2, screen.height * 0.2, 'reloading').setScale(0.8);
+  game.reloading = game.add.image(width / 2, height * 0.2, 'reloading').setScale(0.8);
   game.reloading.setScrollFactor(0);
   game.reloading.visible = false;
 }

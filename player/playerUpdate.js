@@ -1,5 +1,10 @@
 export default function playerUpdate(game) {
-  if (game.player.getCenter().y > screen.height * 1.1) {
+  let {
+    width,
+    height
+  } = game.game.config;
+
+  if (game.player.getCenter().y > height * 1.1) {
     game.playerState.health = 0;
   }
   if (game.playerState.health > 0) {

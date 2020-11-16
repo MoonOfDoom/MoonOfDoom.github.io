@@ -16,8 +16,8 @@ import updateTwo from './levelTwo/updateTwo.js';
 //game scene
 let config = {
 	type: Phaser.AUTO,
-	width: screen.width,
-	height: screen.height,
+	width: 1200,
+	height: 700,
   scale: {
       mode: Phaser.Scale.FIT,
       autoCenter: Phaser.Scale.CENTER_BOTH
