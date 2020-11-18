@@ -62,6 +62,6 @@ let levelTwoConfig = {
 	}
 }
 
-let splashScreen = game.scene.add('splashScreen',splashScreenConfig,true);
-let levelOne = game.scene.add('levelOne',levelOneConfig,false);
+let splashScreen = game.scene.add('splashScreen',splashScreenConfig,false);
+let levelOne = game.scene.add('levelOne',levelOneConfig,true);
 let levelTwo = game.scene.add('levelTwo',levelTwoConfig,false);

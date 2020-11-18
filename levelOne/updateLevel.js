@@ -22,4 +22,15 @@ export default function updateLevel(game) {
 
   //banner lights flicker
   game.banner.anims.play('flicker', true);
+
+  //restart level on health 0
+  if (game.playerState.health === 0) {
+    game.time.addEvent({
+      delay: 2000,
+      callback: () => {
+        game.scene.restart();
+      },
+      loop: false
+    });
+  }
 }

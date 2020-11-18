@@ -13,6 +13,10 @@ export default function preloadOne() {
 			'../assets/rude.png',
 			{ frameWidth: 512, frameHeight: 638.8 }
 	);
+	this.load.spritesheet('enemy1',
+			'../assets/enemy1.png',
+			{ frameWidth: 1082, frameHeight: 1350 }
+	);
 	this.load.spritesheet('land',
 			'../assets/land.png',
 			{ frameWidth: 154, frameHeight: 68 }

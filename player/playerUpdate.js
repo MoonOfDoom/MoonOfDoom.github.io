@@ -17,7 +17,7 @@ export default function playerUpdate(game) {
     if (!game.playerState.landed) game.player.anims.play('jump', true);
 
     //jump
-    if (game.cursors.shift.isDown) {
+    if (Phaser.Input.Keyboard.JustDown(game.cursors.shift)) {
       if (game.playerState.landed) game.player.setVelocityY(-1030);
     }
 

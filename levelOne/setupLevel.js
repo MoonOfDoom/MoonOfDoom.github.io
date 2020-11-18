@@ -16,13 +16,13 @@ export default function setupLevel(game) {
   game.moon.setScrollFactor(0);
 
   //trees
-  game.tree3 = game.add.tileSprite(width / 2, height * 0.5, width, height * 2, 'tree3').setScale(1);
+  game.tree3 = game.add.tileSprite(width / 2, height * 0.4, width, height * 2, 'tree3').setScale(1);
   game.tree3.setScrollFactor(0);
 
-  game.tree2 = game.add.tileSprite(width / 2, height * 0.5, width, height * 2, 'tree2').setScale(1);
+  game.tree2 = game.add.tileSprite(width / 2, height * 0.4, width, height * 2, 'tree2').setScale(1);
   game.tree2.setScrollFactor(0);
 
-  game.tree1 = game.add.tileSprite(width / 2, height * 0.5, width, height * 2, 'tree1').setScale(1);
+  game.tree1 = game.add.tileSprite(width / 2, height * 0.4, width, height * 2, 'tree1').setScale(1);
   game.tree1.setScrollFactor(0);
 
   //platforms
