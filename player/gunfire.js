@@ -5,6 +5,7 @@ export default function gunfire(game) {
       bullet[0].visible = true;
       bullet[0].x = playerState.position === 'left' ? player.getCenter().x - 80 : player.getCenter().x + 80;
       bullet[0].y = player.getCenter().y - 7;
+      if (playerState.crouch) bullet[0].y = player.getCenter().y + 78;
       if (playerState.position === 'left') {
         bullet[0].body.velocity.x = -2000;
         bullet[0].flipX = true;

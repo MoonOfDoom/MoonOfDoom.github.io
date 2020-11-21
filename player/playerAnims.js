@@ -13,11 +13,11 @@ export default function playerAnims(game) {
 
   game.anims.create({
     key: 'idle',
-    frames: [{
-      key: 'dude',
-      frame: 0
-    }],
-    frameRate: 20
+    frames: game.anims.generateFrameNumbers('dude', {
+      start: 26,
+      end: 27
+    }),
+    frameRate: 2
   });
 
   game.anims.create({
@@ -64,7 +64,7 @@ export default function playerAnims(game) {
     key: 'crouch',
     frames: [{
       key: 'dude',
-      frame: 24
+      frame: 25
     }],
     frameRate: 20,
     repeat: -1
