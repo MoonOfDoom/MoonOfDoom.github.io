@@ -3,8 +3,8 @@ export default function gunfire(game) {
   function create_callback(bullet, player, playerState) {
     if (bullet && bullet[0] && bullet[0].body) {
       bullet[0].visible = true;
-      bullet[0].x = player.getCenter().x;
-      bullet[0].y = player.getCenter().y;
+      bullet[0].x = playerState.position === 'left' ? player.getCenter().x - 80 : player.getCenter().x + 80;
+      bullet[0].y = player.getCenter().y - 7;
       if (playerState.position === 'left') {
         bullet[0].body.velocity.x = -2000;
         bullet[0].flipX = true;
@@ -14,6 +14,7 @@ export default function gunfire(game) {
         bullet[0].flipX = false;
       }
       if (playerState.cross) {
+        bullet[0].y = player.getCenter().y - 70;
         if (playerState.position === 'right') {
           bullet[0].body.velocity.x = 1200;
           bullet[0].angle = -45;
@@ -25,6 +26,8 @@ export default function gunfire(game) {
         bullet[0].body.velocity.y = -600;
       }
       else if (playerState.lookup) {
+        bullet[0].x = playerState.position === 'left' ? player.getCenter().x - 10 : player.getCenter().x + 10;
+        bullet[0].y = player.getCenter().y - 107;
         bullet[0].body.velocity.x = 0;
         bullet[0].body.velocity.y = -1500;
         playerState.position === 'right' ? bullet[0].angle = -90 : bullet[0].angle = 90;
@@ -45,7 +48,7 @@ export default function gunfire(game) {
       createCallback: create_callback(game.bullet, game.player, game.playerState),
       setXY: {
         x: game.player.getCenter().x,
-        y: game.player.getCenter().y,
+        y: game.player.getCenter().y - 7,
         stepX: 0,
         stepY: 0
       },
@@ -73,6 +76,10 @@ export default function gunfire(game) {
   //bullets destroy
   if (game.bullets.children.entries) {
     for (let bul of game.bullets.children.entries) {
+      bul.body.setSize(5,5,true);
+      game.physics.add.overlap(bul,game.enemies1,() => {
+        bul.destroy();
+      });
       if (
         bul.x > game.cameras.main.worldView.x + 1500
         || bul.x < game.cameras.main.worldView.x

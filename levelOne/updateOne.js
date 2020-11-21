@@ -1,6 +1,7 @@
 import updateLevel from './updateLevel.js';
 import playerUpdate from '../player/playerUpdate.js';
 import enemy1Update from '../enemy1/enemy1Update.js';
+import laserfire from '../enemy1/laserfire.js';
 import gunfire from '../player/gunfire.js';
 import updateLayout from '../layout/updateLayout.js';
 
@@ -16,6 +17,9 @@ export default function updateOne() {
 
   //gunfire
   gunfire(this);
+
+  //laserfire
+  laserfire(this);
 
   //layout update
   updateLayout(this);

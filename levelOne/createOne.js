@@ -32,8 +32,9 @@ export default function createOne() {
   //collisions
   this.physics.add.collider(this.player, this.platforms);
   this.physics.add.collider(this.enemy1, this.platforms);
-  this.physics.add.collider(this.enemy1, this.bullets);
+  this.physics.add.collider(this.enemy1, this.enemy1);
   this.physics.add.collider(this.player, this.boxes);
+  this.physics.add.collider(this.enemies1);
 
   //layout
   layout(this);

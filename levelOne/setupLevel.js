@@ -29,6 +29,7 @@ export default function setupLevel(game) {
   game.platforms = game.physics.add.staticGroup();
   game.platforms.create(width / 2, height * 0.96, 'ground').setScale(width * 0.009, 1).refreshBody();
   game.platforms.create(width / 2 + width * 0.009 *154 + 600, height * 0.96, 'ground').setScale(width * 0.009, 1).refreshBody();
+  game.platforms.create(width / 2 + width * 0.009 *154 * 2 + 600, height * 0.96, 'ground').setScale(width * 0.009, 1).refreshBody();
 
   //boxes
   game.boxes = game.physics.add.staticGroup();
@@ -49,4 +50,5 @@ export default function setupLevel(game) {
   //land
   game.add.tileSprite(width / 2, height * 0.95, width * 0.009 * 154, 68, 'land');
   game.add.tileSprite(width / 2 + width * 0.009 *154 + 600, height * 0.95, width * 0.009 * 154, 68, 'land');
+  game.add.tileSprite(width / 2 + width * 0.009 *154 * 2 + 600, height * 0.95, width * 0.009 * 154, 68, 'land');
 }

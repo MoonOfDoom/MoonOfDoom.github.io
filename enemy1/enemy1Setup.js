@@ -1,27 +1,17 @@
 export default function enemy1Setup(game) {
-  // //lasers
-  // game.lasers = game.physics.add.group({
-  //   classType: Phaser.GameObjects.Image,
-  //   defaultKey: 'laser',
-  //   defaultFrame: null,
-  //   active: true,
-  //   maxSize: -1,
-  //   runChildUpdate: false,
-  //   createCallback: null,
-  //   removeCallback: null,
-  //   createMultipleCallback: null,
-  //   allowGravity: false
-  // });
-  //
-  // //lasers limiter
-  // game.time.addEvent({
-  //   delay: 100,
-  //   callback: () => {
-  //     game.enemy1State.shoot = true;
-  //   },
-  //   loop: true
-  // });
-  console.log(game.platforms);
+  //lasers
+  game.lasers = game.physics.add.group({
+    classType: Phaser.GameObjects.Image,
+    defaultKey: 'laser',
+    defaultFrame: null,
+    active: true,
+    maxSize: -1,
+    runChildUpdate: false,
+    createCallback: null,
+    removeCallback: null,
+    createMultipleCallback: null,
+    allowGravity: false
+  });
 
   game.enemies1 = game.physics.add.group({
     classType: Phaser.GameObjects.Sprite,
@@ -41,7 +31,7 @@ export default function enemy1Setup(game) {
     frame: null,
     visible: true,
     active: true,
-    repeat: 2,
+    repeat: 5,
     createCallback: null,
     setXY: {
       x: 0,
@@ -55,10 +45,23 @@ export default function enemy1Setup(game) {
     }
   });
 
+  let enemyPos = [100,1300,2000,2600,2900,3500]
+
   game.enemies1.getChildren().forEach((enemy, i) => {
-    enemy.x = i * 1000 + 500;
-    enemy.body.setSize(500,1200,false);
-    enemy.body.setOffset(250,150);
+    game.physics.add.overlap(game.bullets,enemy,() => {
+      enemy.alpha = 0.8;
+      game.time.addEvent({
+        delay: 50,
+        callback: () => {
+          enemy.alpha = 1;
+        },
+        loop: false
+      });
+      enemy.enemy1State.health--;
+    });
+    enemy.x = enemyPos[i];
+    enemy.body.setSize(400,1200,false);
+    enemy.body.setOffset(350,150);
     enemy.body.setCollideWorldBounds(true);
     enemy.setDepth(1);
     enemy.enemy1State = {
@@ -66,6 +69,15 @@ export default function enemy1Setup(game) {
       shoot: false,
       health: 20
     }
+    //lasers limiter
+    game.time.addEvent({
+      delay: 1000,
+      callback: () => {
+        enemy.enemy1State.shoot = true;
+      },
+      loop: true
+    });
+    console.log(enemy);
   });
 
 }
