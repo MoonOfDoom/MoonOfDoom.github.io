@@ -16,7 +16,7 @@ export default function preloadOne() {
 	);
 	this.load.spritesheet('enemy1',
 			'../assets/enemy1.png',
-			{ frameWidth: 1082, frameHeight: 1350 }
+			{ frameWidth: 512, frameHeight: 639 }
 	);
 	this.load.spritesheet('land',
 			'../assets/land.png',

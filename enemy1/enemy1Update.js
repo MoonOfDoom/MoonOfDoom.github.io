@@ -9,7 +9,7 @@ export default function enemy1Update(game) {
       if (enemy.getCenter().y > height * 1.1) {
         enemy.enemy1State.health = 0;
       }
-      if (Math.abs(enemy.x - game.player.x) < 1000 && Math.abs(enemy.x - game.player.x) > 200) {
+      if (enemy.enemy1State.health > 0 && Math.abs(enemy.x - game.player.x) < 1000 && Math.abs(enemy.x - game.player.x) > 200) {
         //enemy1 positions
         // if player to left of enemy AND enemy moving to right (or not moving)
         if (game.player.x < enemy.x) {
@@ -33,7 +33,20 @@ export default function enemy1Update(game) {
           enemy.anims.play('idle_enemy1', true);
         }
 
-      } else {
+      }
+      else if (enemy.enemy1State.health === 0) {
+        enemy.anims.play('dead_enemy1', true);
+        enemy.body.touching.down && enemy.body.setVelocityY(-800);
+        enemy.enemy1State.position === 'left' ? enemy.body.setVelocityX(550) : enemy.body.setVelocityX(-550);
+        game.time.addEvent({
+          delay: 1000,
+          callback: () => {
+            enemy.destroy();
+          },
+          loop: false
+        });
+      }
+      else if (enemy.enemy1State.health > 0) {
         enemy.body.setVelocityX(0);
         enemy.anims.play('idle_enemy1', true);
         if (game.player.x < enemy.x) {
@@ -43,9 +56,6 @@ export default function enemy1Update(game) {
           enemy.enemy1State.position = 'right';
           enemy.flipX = false;
         }
-      }
-      if (enemy.enemy1State.health === 0) {
-        enemy.destroy();
       }
     });
   }

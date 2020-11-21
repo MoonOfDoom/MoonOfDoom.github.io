@@ -34,7 +34,7 @@ export default function laserfire(game) {
 
   //shoot
   game.enemies1.getChildren().forEach((enemy, i) => {
-    if (enemy.enemy1State.shoot) {
+    if (enemy.enemy1State.shoot && enemy.enemy1State.health > 0) {
       game.laser = game.lasers.createFromConfig({
         classType: Phaser.GameObjects.Image,
         key: 'laser',

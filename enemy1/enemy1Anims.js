@@ -21,6 +21,15 @@ export default function enemy1Anims(game) {
   });
 
   game.anims.create({
+    key: 'dead_enemy1',
+    frames: [{
+      key: 'enemy1',
+      frame: 7
+    }],
+    frameRate: 20
+  });
+
+  game.anims.create({
     key: 'right_enemy1',
     frames: game.anims.generateFrameNumbers('enemy1', {
       start: 1,

@@ -40,8 +40,8 @@ export default function enemy1Setup(game) {
       stepY: 0
     },
     setScale: {
-      x: 0.13,
-      y: 0.13
+      x: 0.3,
+      y: 0.3
     }
   });
 
@@ -49,19 +49,11 @@ export default function enemy1Setup(game) {
 
   game.enemies1.getChildren().forEach((enemy, i) => {
     game.physics.add.overlap(game.bullets,enemy,() => {
-      enemy.alpha = 0.8;
-      game.time.addEvent({
-        delay: 50,
-        callback: () => {
-          enemy.alpha = 1;
-        },
-        loop: false
-      });
       enemy.enemy1State.health--;
     });
     enemy.x = enemyPos[i];
-    enemy.body.setSize(400,1200,false);
-    enemy.body.setOffset(350,150);
+    enemy.body.setSize(200,600,true);
+    enemy.body.setOffset(150,30);
     enemy.body.setCollideWorldBounds(true);
     enemy.setDepth(1);
     enemy.enemy1State = {
