@@ -18,7 +18,8 @@ export default function playerSetup(game) {
     shoot: false,
     reloading: false,
     ammo: 60,
-    health: 100
+    health: 100,
+    deadAnim: true
   }
 
   //bullets

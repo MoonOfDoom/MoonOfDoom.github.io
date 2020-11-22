@@ -48,13 +48,13 @@ export default function playerUpdate(game) {
     }
 
     //crouch
-    else if (game.cursors.down.isDown) {
-      game.playerState.crouch = true;
-      if (game.playerState.landed) {
-        game.player.setVelocityX(0);
-        game.player.anims.play('crouch', true);
-      }
-    }
+    // else if (game.cursors.down.isDown) {
+    //   game.playerState.crouch = true;
+    //   if (game.playerState.landed) {
+    //     game.player.setVelocityX(0);
+    //     game.player.anims.play('crouch', true);
+    //   }
+    // }
 
     //lookup
     else if (game.cursors.up.isDown) {
@@ -79,8 +79,23 @@ export default function playerUpdate(game) {
     if (game.cursors.down.isUp) game.playerState.crouch = false;
   }
   else {
-    game.player.setVelocityX(0);
-    game.player.setVelocityY(0);
+    if (game.playerState.deadAnim) {
+      game.time.addEvent({
+        delay: 500,
+        callback: () => {
+          if (game.player.body.touching.down) game.playerState.deadAnim = false;
+        },
+        loop: false
+      });
+      game.player.anims.play('jump', true);
+      game.playerState.position === 'left' ? game.player.setVelocityX(400) : game.player.setVelocityX(-400);
+      if (game.player.body.touching.down) game.player.setVelocityY(-1000);
+    }
+    else {
+      game.player.anims.play('dead', true);
+      game.player.setVelocityX(0);
+      game.player.setVelocityY(1000);
+    }
   }
 
 }

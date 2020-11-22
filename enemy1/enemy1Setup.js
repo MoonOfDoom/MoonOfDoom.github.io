@@ -47,6 +47,11 @@ export default function enemy1Setup(game) {
 
   let enemyPos = [100,1300,2000,2600,2900,3500]
 
+  //damage to player
+  game.physics.add.overlap(game.lasers,game.player,() => {
+    game.playerState.health-=10;
+  });
+
   game.enemies1.getChildren().forEach((enemy, i) => {
     game.physics.add.overlap(game.bullets,enemy,() => {
       enemy.enemy1State.health--;

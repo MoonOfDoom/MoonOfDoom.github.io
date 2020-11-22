@@ -26,8 +26,9 @@ export default function updateLevel(game) {
   //restart level on health 0
   if (game.playerState.health === 0) {
     game.time.addEvent({
-      delay: 2000,
+      delay: 4000,
       callback: () => {
+        console.log('ded');
         game.scene.restart();
       },
       loop: false

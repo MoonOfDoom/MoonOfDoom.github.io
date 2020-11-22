@@ -70,4 +70,14 @@ export default function playerAnims(game) {
     repeat: -1
   });
 
+  game.anims.create({
+    key: 'dead',
+    frames: [{
+      key: 'dude',
+      frame: 28
+    }],
+    frameRate: 20,
+    repeat: -1
+  });
+
 }

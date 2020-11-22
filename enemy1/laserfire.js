@@ -34,7 +34,7 @@ export default function laserfire(game) {
 
   //shoot
   game.enemies1.getChildren().forEach((enemy, i) => {
-    if (enemy.enemy1State.shoot && enemy.enemy1State.health > 0) {
+    if (enemy.enemy1State.shoot && enemy.enemy1State.health > 0 && game.playerState.health > 0) {
       game.laser = game.lasers.createFromConfig({
         classType: Phaser.GameObjects.Image,
         key: 'laser',
@@ -63,6 +63,10 @@ export default function laserfire(game) {
 
   if (game.lasers.children.entries) {
     for (let bul of game.lasers.children.entries) {
+      bul.body.setSize(5,5,true);
+      game.physics.add.overlap(bul,game.player,() => {
+        bul.destroy();
+      });
       if (
         bul.x > game.cameras.main.worldView.x + 1500
         || bul.x < game.cameras.main.worldView.x
