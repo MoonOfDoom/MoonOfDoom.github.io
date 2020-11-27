@@ -58,6 +58,7 @@ export default function gunfire(game) {
         y: 0.4
       }
     });
+    game.gunSound.play();
     game.playerState.shoot = false;
   }
 

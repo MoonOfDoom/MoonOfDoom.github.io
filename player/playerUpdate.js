@@ -18,7 +18,10 @@ export default function playerUpdate(game) {
 
     //jump
     if (Phaser.Input.Keyboard.JustDown(game.cursors.shift)) {
-      if (game.playerState.landed) game.player.setVelocityY(-1030);
+      if (game.playerState.landed) {
+        game.player.setVelocityY(-1030);
+        game.jumpSound.play();
+      }
     }
 
     //left
@@ -79,9 +82,9 @@ export default function playerUpdate(game) {
     if (game.cursors.down.isUp) game.playerState.crouch = false;
   }
   else {
-    if (game.playerState.deadAnim) {
+    if (game.player.getCenter().y < height * 1.1 && game.playerState.deadAnim) {
       game.time.addEvent({
-        delay: 500,
+        delay: 100,
         callback: () => {
           if (game.player.body.touching.down) game.playerState.deadAnim = false;
         },

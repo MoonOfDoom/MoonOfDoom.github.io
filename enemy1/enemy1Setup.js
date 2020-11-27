@@ -68,7 +68,7 @@ export default function enemy1Setup(game) {
     }
     //lasers limiter
     game.time.addEvent({
-      delay: 1000,
+      delay: 1000 + Math.round(Math.random() * 1000),
       callback: () => {
         enemy.enemy1State.shoot = true;
       },
@@ -77,4 +77,7 @@ export default function enemy1Setup(game) {
     console.log(enemy);
   });
 
+  //enemy sounds
+  game.zapSound = game.sound.add('zap');
+  game.zapSound.setVolume(0.1);
 }

@@ -51,4 +51,11 @@ export default function setupLevel(game) {
   game.add.tileSprite(width / 2, height * 0.95, width * 0.009 * 154, 68, 'land');
   game.add.tileSprite(width / 2 + width * 0.009 *154 + 600, height * 0.95, width * 0.009 * 154, 68, 'land');
   game.add.tileSprite(width / 2 + width * 0.009 *154 * 2 + 600, height * 0.95, width * 0.009 * 154, 68, 'land');
+
+  //BG music
+  game.bgMusic = game.sound.add('mainBG');
+  game.bgMusic.setVolume(0.2);
+  game.bgMusic.play();
+  game.deadMusic = game.sound.add('dead');
+  game.deadMusic.setVolume(0.3);
 }

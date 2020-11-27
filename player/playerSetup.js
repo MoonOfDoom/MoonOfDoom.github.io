@@ -19,7 +19,8 @@ export default function playerSetup(game) {
     reloading: false,
     ammo: 60,
     health: 100,
-    deadAnim: true
+    deadAnim: true,
+    deadSound: true
   }
 
   //bullets
@@ -44,4 +45,10 @@ export default function playerSetup(game) {
     },
     loop: true
   });
+
+  //player sounds
+  game.gunSound = game.sound.add('gun');
+  game.gunSound.setVolume(0.1);
+  game.jumpSound = game.sound.add('jump');
+  game.jumpSound.setVolume(0.3);
 }

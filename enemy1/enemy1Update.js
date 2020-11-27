@@ -17,7 +17,7 @@ export default function enemy1Update(game) {
           enemy.enemy1State.position = 'left';
           enemy.anims.play('left_enemy1', true);
           enemy.flipX = true;
-          enemy.body.setVelocityX(-250 * (i * 0.05 + 1));
+          enemy.body.setVelocityX(-150 - Math.round(Math.random() * 200));
         }
         // if player to right of enemy AND enemy moving to left (or not moving)
         else if (game.player.x > enemy.x) {
@@ -25,7 +25,7 @@ export default function enemy1Update(game) {
           enemy.enemy1State.position = 'right';
           enemy.flipX = false;
           enemy.anims.play('right_enemy1', true);
-          enemy.body.setVelocityX(250 * (i * 0.05 + 1));
+          enemy.body.setVelocityX(150 + Math.round(Math.random() * 200));
         }
         //idle
         else if (game.player.x === enemy.x) {

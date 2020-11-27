@@ -5,9 +5,16 @@ export default function preloadOne() {
 	this.load.image('moon', '../assets/moon.png');
 	this.load.image('box', '../assets/box.png');
 	this.load.image('bullet', '../assets/bullet.png');
-	this.load.image('laser', '../assets/bullet.png');
+	this.load.image('laser', '../assets/laser.png');
 	this.load.image('reload', '../assets/reload.png');
 	this.load.image('reloading', '../assets/reloading.png');
+
+	//audio
+	this.load.audio('mainBG', '../assets/mainBG.mp3');
+	this.load.audio('gun', '../assets/gun.mp3');
+	this.load.audio('zap', '../assets/zap.mp3');
+	this.load.audio('jump', '../assets/jump.mp3');
+	this.load.audio('dead', '../assets/dead.mp3');
 
 	//spritesheets
 	this.load.spritesheet('dude',

@@ -34,7 +34,7 @@ export default function laserfire(game) {
 
   //shoot
   game.enemies1.getChildren().forEach((enemy, i) => {
-    if (enemy.enemy1State.shoot && enemy.enemy1State.health > 0 && game.playerState.health > 0) {
+    if (enemy.enemy1State.shoot && enemy.enemy1State.health > 0 && game.playerState.health > 0 && Math.abs(enemy.x - game.player.x) < 500) {
       game.laser = game.lasers.createFromConfig({
         classType: Phaser.GameObjects.Image,
         key: 'laser',
@@ -55,6 +55,7 @@ export default function laserfire(game) {
         }
       });
       enemy.enemy1State.shoot = false;
+      game.zapSound.play();
     }
   });
 
