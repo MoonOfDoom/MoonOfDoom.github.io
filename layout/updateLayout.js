@@ -4,4 +4,5 @@ export default function updateLayout(game) {
   else game.reloadFlash.visible = false;
   if (game.playerState.reloading) game.reloading.visible = true;
   else game.reloading.visible = false;
+  game.energyMask.x = game.playerState.health - 12;
 }

@@ -27,6 +27,7 @@ export default function createOne() {
 
   //keys
   this.ctrlKey = this.input.keyboard.addKey('CTRL');
+  this.dKey = this.input.keyboard.addKey('D');
   this.cursors = this.input.keyboard.createCursorKeys();
 
   //collisions

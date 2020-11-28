@@ -8,6 +8,8 @@ export default function preloadOne() {
 	this.load.image('laser', '../assets/laser.png');
 	this.load.image('reload', '../assets/reload.png');
 	this.load.image('reloading', '../assets/reloading.png');
+	this.load.image('energyCont', '../assets/energyCont.png');
+	this.load.image('energyBar', '../assets/energybar.png');
 
 	//audio
 	this.load.audio('mainBG', '../assets/mainBG.mp3');

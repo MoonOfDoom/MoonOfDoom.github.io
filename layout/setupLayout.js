@@ -18,6 +18,14 @@ export default function layout(game) {
   //reload
   game.reloadFlash = game.add.image(width / 2, height * 0.2, 'reload');
   game.reloadFlash.setScrollFactor(0);
+  game.energyCont = game.add.image(120, 40, 'energyCont').setScale(0.3);
+  game.energyCont.setScrollFactor(0);
+  game.energyBar = game.add.image(138, 43, 'energyBar').setScale(0.3);
+  game.energyBar.setScrollFactor(0);
+  game.energyMask = game.add.image(138, 43, 'energyBar').setScale(0.3);
+  game.energyMask.visible = false;
+  game.energyMask.setScrollFactor(0);
+  game.energyBar.mask = new Phaser.Display.Masks.BitmapMask(game, game.energyMask);
   game.reloadFlash.visible = false;
   game.reloading = game.add.image(width / 2, height * 0.2, 'reloading').setScale(0.8);
   game.reloading.setScrollFactor(0);

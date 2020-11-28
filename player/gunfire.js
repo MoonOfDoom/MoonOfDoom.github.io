@@ -34,6 +34,16 @@ export default function gunfire(game) {
         playerState.position === 'right' ? bullet[0].angle = -90 : bullet[0].angle = 90;
       }
       game.playerState.ammo--;
+      //bullet destroy
+      bullet[0].body.setSize(5,5,true);
+      game.physics.add.overlap(bullet[0],game.enemies1,() => {
+        bullet[0].destroy();
+      });
+      if (
+        bullet[0].x > game.cameras.main.worldView.x + 1200
+        || bullet[0].x < game.cameras.main.worldView.x
+        || bullet[0].y < game.cameras.main.worldView.y
+      ) bullet[0].destroy();
     }
   }
 
@@ -73,20 +83,5 @@ export default function gunfire(game) {
       },
       loop: false
     });
-  }
-
-  //bullets destroy
-  if (game.bullets.children.entries) {
-    for (let bul of game.bullets.children.entries) {
-      bul.body.setSize(5,5,true);
-      game.physics.add.overlap(bul,game.enemies1,() => {
-        bul.destroy();
-      });
-      if (
-        bul.x > game.cameras.main.worldView.x + 1500
-        || bul.x < game.cameras.main.worldView.x
-        || bul.y < game.cameras.main.worldView.y
-      ) bul.destroy();
-    }
   }
 }
