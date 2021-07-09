@@ -25,52 +25,66 @@ export default function enemy1Setup(game) {
     createMultipleCallback: null,
   });
 
-  game.enemy1 = game.enemies1.createFromConfig({
-    classType: Phaser.GameObjects.Sprite,
-    key: 'enemy1',
-    frame: null,
-    visible: true,
-    active: true,
-    repeat: 5,
-    createCallback: null,
-    setXY: {
-      x: 0,
-      y: 100,
-      stepX: 0,
-      stepY: 0
-    },
-    setScale: {
-      x: 0.3,
-      y: 0.3
-    }
-  });
+  function spawnEnemies(game) {
 
-  let enemyPos = [100,1300,2000,2600,2900,3500]
+    let enemyPos = [100,1300,2000,2600,2900,3500];
 
-  game.enemies1.getChildren().forEach((enemy, i) => {
-    game.physics.add.overlap(game.bullets,enemy,() => {
-      enemy.enemy1State.health -= 5;
-    });
-    enemy.x = enemyPos[i];
-    enemy.body.setSize(200,600,true);
-    enemy.body.setOffset(150,30);
-    enemy.body.setCollideWorldBounds(true);
-    enemy.setDepth(1);
-    enemy.enemy1State = {
-      position: 'right',
-      shoot: false,
-      health: 20
-    }
-    //lasers limiter
-    game.time.addEvent({
-      delay: 1000 + Math.round(Math.random() * 1000),
-      callback: () => {
-        enemy.enemy1State.shoot = true;
+    game.enemy1 = game.enemies1.createFromConfig({
+      classType: Phaser.GameObjects.Sprite,
+      key: 'enemy1',
+      frame: null,
+      visible: true,
+      active: true,
+      repeat: 5,
+      createCallback: null,
+      setXY: {
+        x: 0,
+        y: 100,
+        stepX: 0,
+        stepY: 0
       },
-      loop: true
+      setScale: {
+        x: 0.3,
+        y: 0.3
+      }
     });
-    console.log(enemy);
-  });
+
+    game.enemies1.getChildren().forEach((enemy, i) => {
+      game.physics.add.overlap(game.bullets,enemy,() => {
+        enemy.enemy1State.health -= 5;
+      });
+      enemy.x = enemyPos[i];
+      enemy.y = -0.1 * enemyPos[i];
+      enemy.body.setSize(200,600,true);
+      enemy.body.setOffset(150,30);
+      enemy.body.setCollideWorldBounds(true);
+      enemy.setDepth(1);
+      enemy.enemy1State = {
+        position: 'right',
+        shoot: false,
+        health: 20,
+        alive: true
+      }
+      //lasers limiter
+      game.time.addEvent({
+        delay: 1000 + Math.round(Math.random() * 1000),
+        callback: () => {
+          enemy.enemy1State.shoot = true;
+        },
+        loop: true
+      });
+    });
+
+    game.physics.add.collider(game.enemy1, game.platforms);
+
+  }
+
+  spawnEnemies(game);
+
+  setInterval( () => {
+    if(game.enemies1.getChildren().length == 0) spawnEnemies(game);
+  },1000)
+
 
   //enemy sounds
   game.zapSound = game.sound.add('zap');

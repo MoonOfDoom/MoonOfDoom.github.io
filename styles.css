@@ -1,5 +1,11 @@
+@font-face {
+  font-family: pixeboy;
+  src: url('/assets/pixeboy1.ttf');
+}
+
 body {
   background-color: #000;
   overflow: hidden;
   margin: 0;
+  font-family: pixeboy;
 }

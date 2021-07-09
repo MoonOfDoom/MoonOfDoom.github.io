@@ -5,8 +5,8 @@ export default function createSplash() {
   } = this.game.config;
 
   let rnm = this.add.image(width / 2, height / 2, 'ricknmorty').setScale(0.8);
-  let intro1 = this.add.image(width * 0.7, 80, 'intro1').setScale(0.8);
-  let intro2 = this.add.image(200, height * 0.9, 'intro2').setScale(0.7);
+  // let intro1 = this.add.image(width * 0.7, 80, 'intro1').setScale(0.8);
+  // let intro2 = this.add.image(200, height * 0.9, 'intro2').setScale(0.7);
   let intro3 = this.add.image(width / 2, height * 0.4, 'intro3').setScale(0.7);
 
   function tween(scene = this,gameObj,duration,delay,yoyo,loop = 0,cb = null,curve = 'Cubic.easeInOut',cb2 = null) {
@@ -30,8 +30,8 @@ export default function createSplash() {
   }
 
   tween(this,rnm,2000,0,true);
-  tween(this,intro1,3000,5000,false);
-  tween(this,intro2,3000,5500,false);
+  // tween(this,intro1,3000,5000,false);
+  // tween(this,intro2,3000,5500,false);
   tween(this,intro3,4000,6500,false,0,() => {
     let hitenter = this.add.image(width / 2, height * 0.85, 'hitenter').setScale(0.6);
     hitenter.alpha = 0;

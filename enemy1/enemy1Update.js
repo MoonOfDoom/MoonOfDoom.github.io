@@ -41,7 +41,9 @@ export default function enemy1Update(game) {
         game.time.addEvent({
           delay: 1000,
           callback: () => {
+            if (enemy.enemy1State.alive && enemy.getCenter().y < height) game.playerState.score += 10;
             enemy.destroy();
+            enemy.enemy1State.alive = false;
           },
           loop: false
         });

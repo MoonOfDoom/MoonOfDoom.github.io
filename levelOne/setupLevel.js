@@ -5,7 +5,7 @@ export default function setupLevel(game) {
   } = game.game.config;
 
   //world bounds
-  game.physics.world.setBounds(0, -200, width * 100, height * 2, true, true, true, true);
+  game.physics.world.setBounds(0, -200, width * 4.2, height * 2, true, true, true, true);
 
   //background
   game.sky = game.add.tileSprite(width / 2, height / 2, width, height, 'sky');

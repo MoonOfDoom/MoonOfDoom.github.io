@@ -17,10 +17,11 @@ export default function playerSetup(game) {
     firing: false,
     shoot: false,
     reloading: false,
-    ammo: 60,
+    ammo: 80,
     health: 150,
     deadAnim: true,
-    deadSound: true
+    deadSound: true,
+    score: 0
   }
 
   //bullets
@@ -39,7 +40,7 @@ export default function playerSetup(game) {
 
   //bullets limiter
   game.time.addEvent({
-    delay: 200,
+    delay: 100,
     callback: () => {
       game.playerState.shoot = true;
     },
