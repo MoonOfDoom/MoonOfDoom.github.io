@@ -6,4 +6,5 @@ export default function updateLayout(game) {
   else game.reloading.visible = false;
   game.energyMask.x = game.playerState.health - 12;
   game.scoreText.setText('Score: ' + '0'.repeat(6 - game.playerState.score.toString().length) + game.playerState.score);
+  if(!game.playerState.deadSound) game.gameOver.visible = true;
 }

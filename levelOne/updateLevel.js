@@ -25,10 +25,8 @@ export default function updateLevel(game) {
 
   //restart level on health 0
   if (game.playerState.health === 0) {
-    game.playerState.deadSound && game.deadMusic.play();
-    game.playerState.deadSound = false;
-    game.bgMusic.stop();
-    game.time.addEvent({
+    game.playerState.deadSound && game.deadMusic.play() && game.bgMusic.stop();
+    game.playerState.deadSound && game.time.addEvent({
       delay: 4000,
       callback: () => {
         console.log('ded');
@@ -36,5 +34,6 @@ export default function updateLevel(game) {
       },
       loop: false
     });
+    game.playerState.deadSound = false;
   }
 }

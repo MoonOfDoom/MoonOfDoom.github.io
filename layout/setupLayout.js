@@ -17,6 +17,9 @@ export default function layout(game) {
   });
   game.reloadFlash = game.add.image(width / 2, height * 0.2, 'reload');
   game.reloadFlash.setScrollFactor(0);
+  game.gameOver = game.add.image(width / 2, height * 0.4, 'gameover').setScale(0.5);
+  game.gameOver.setScrollFactor(0);
+  game.gameOver.visible = false;
   game.energyCont = game.add.image(120, 40, 'energyCont').setScale(0.3);
   game.energyCont.setScrollFactor(0);
   game.energyBar = game.add.image(138, 43, 'energyBar').setScale(0.3);
